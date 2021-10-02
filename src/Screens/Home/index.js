@@ -14,7 +14,7 @@ const Home = () => {
       <FlatList 
         data={Date}
         keyExtractor={item => item.id}
-        renderItem={({item}) => <Games image={item.image} name={item.name} price={item.price} />}
+        renderItem={({item}) => <Games image={item.image} name={item.name} price={item.price} key={() => item.id} />}
         showsVerticalScrollIndicator={false}
       />
     </SafeAreaView>

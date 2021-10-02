@@ -1,6 +1,9 @@
 import React, { useRef } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { Modalize } from 'react-native-modalize';
+import { useNavigation } from '@react-navigation/native';
+
+import Products from '../../products.json'
 
 const Games = ({ name, price, image, onPress }) => {
   const modalizeRef = useRef(null);
@@ -8,6 +11,16 @@ const Games = ({ name, price, image, onPress }) => {
   const onOpen = () => {
     modalizeRef.current?.open();
   };
+
+  const navigation = useNavigation();
+
+  const sendGame = () => {
+    navigation.navigate('Cart', {
+      name: name,
+      price: price
+    })
+  };
+
 
   return (
     <View style={styles.container}>
@@ -28,7 +41,7 @@ const Games = ({ name, price, image, onPress }) => {
           <Text style={styles.modalText}>{name}</Text>
           <Text style={styles.modalText}>${price}</Text>
         </View>
-        <TouchableOpacity style={styles.modalButton}>
+        <TouchableOpacity style={styles.modalButton} onPress={sendGame}>
           <Text style={styles.modalButtonText}>ADD TO CART</Text>
         </TouchableOpacity>
       </Modalize>

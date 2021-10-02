@@ -1,14 +1,17 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome'
 
-import Cart from '../../assets/cart-icon.svg'
-
 const Header = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.headerView}>
       <Text style={styles.name}>GamersBuy</Text>
-      <Icon name="cart-plus" style={styles.icon} />
+      <TouchableOpacity>
+        <Icon name="cart-plus" style={styles.icon} onPress={() => navigation.navigate('Cart')} />
+      </TouchableOpacity>
     </View>
   )
 };
